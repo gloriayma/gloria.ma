@@ -3,7 +3,15 @@
   <h1>{{ .Title }}</h1>
   <hr class="title-rule">
   {{ if .Params.showdate }}
-  <p class="post-date"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006 · 3:04 PM" }}</time></p>
+  <p class="post-date">
+    {{ with .GitInfo }}
+    <a href="https://github.com/gloriayma/gloria.ma/commit/{{ .Hash }}" title="Verify on GitHub — commit {{ .AbbreviatedHash }}, {{ .AuthorDate.Format "2006-01-02" }}">
+      <time datetime="{{ $.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $.Date.Format "January 2, 2006 · 3:04 PM" }}</time>
+    </a>
+    {{ else }}
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006 · 3:04 PM" }}</time>
+    {{ end }}
+  </p>
   {{ end }}
   {{ .Content }}
 </main>
