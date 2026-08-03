@@ -1,0 +1,22 @@
+{{- /*
+  Postscript / acknowledgments block for the end of a post.
+  Renders a horizontal rule above a small, italic, muted-grey block.
+
+  Alignment options (via `align` parameter):
+    right   (default) — block right-hugged inside .page; text right-aligned;
+                        divider centered above the block.
+    center            — block centered on .page; text and divider both
+                        centered.
+
+  Usage:
+    {{< postscript >}}thanks to *alice*.{{< /postscript >}}
+    {{< postscript align="center" >}}thanks to *alice*.{{< /postscript >}}
+
+  Multi-paragraph markdown allowed inside. See claude_instructions/postscript.md
+  for the percent-form variant that lets you use lists / block quotes inside.
+*/ -}}
+{{- $align := .Get "align" | default "right" -}}
+<div class="postscript{{ if eq $align "center" }} postscript--center{{ end }}">
+<hr class="postscript-rule">
+{{ .Inner | markdownify }}
+</div>

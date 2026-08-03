@@ -1,0 +1,29 @@
+{{/*
+  Hypothes.is annotation integration.
+  Sandboxed: controlled by [params.hypothesis] in hugo.toml.
+    - enabled  : master on/off switch
+    - sections : list of content sections (e.g. ["blog"]) to apply to
+    - inline   : when true, also render annotations as margin notes via our
+                 custom JS (hides the embed.js highlights so we own the visuals).
+                 When false, only the default Hypothes.is sidebar is loaded.
+
+  To disable globally: set enabled = false.
+  To extend to other sections: add the section name to sections.
+  To delete entirely: rm this file, remove the partial call in
+    layouts/_default/baseof.html, remove the [params.hypothesis] block in hugo.toml,
+    and rm /static/js/hypothesis-inline.js + /static/css/hypothesis-inline.css.
+*/}}
+{{ if site.Params.hypothesis.enabled }}
+  {{ if and (eq .Kind "page") (in site.Params.hypothesis.sections .Section) }}
+    {{ if site.Params.hypothesis.inline }}
+      <link rel="stylesheet" href="/css/hypothesis-inline.css">
+      <script type="application/json" class="js-hypothesis-config">
+        { "showHighlights": "never" }
+      </script>
+      <script src="https://hypothes.is/embed.js" async></script>
+      <script src="/js/hypothesis-inline.js" defer></script>
+    {{ else }}
+      <script src="https://hypothes.is/embed.js" async></script>
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,205 @@
+/* global defaults */
+body {
+  font-family: system-ui, sans-serif;
+  background: #fffdf8;
+  color: #2d2926;
+  position: relative;
+}
+
+/* shared links */
+a {
+  color: inherit;
+}
+
+/* homepage */
+.home {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 8vh;
+}
+
+.picture {
+  width: 200px;
+  margin-left: -20px
+}
+
+
+.home-intro {
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* music player */
+.staff-button {
+  background: none;
+  border: none;
+  cursor: none;
+  display: block;
+  padding: 0;
+  position: relative;
+  width: min(100%, 600px);
+}
+
+.music-player {
+  margin-top: 3rem;
+  position: relative;
+}
+
+.staff {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.staff-note,
+.staff-cursor {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  width: 5%;
+}
+
+.staff-cursor {
+  display: none;
+  z-index: 1;
+}
+
+.music-hint {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  color: #6f675f;
+  font-style: italic
+}
+
+.music-hint.revealed {
+  font-style: italic;
+}
+
+/* normal pages */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* horizontal rule under blog post title.
+   Change `width` below to control how far it stretches (e.g. 50%, 12rem).
+   Change `margin` left/right to auto for centering (e.g. margin: 0.5rem auto). */
+.title-rule {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ded4c7;
+  margin: -0.5rem 0 1rem;
+  
+}
+
+/* post date (opt-in via `showdate = true` in front matter) */
+.post-date {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: #6f675f;
+}
+
+/* postscript / acknowledgments at end of a post.
+   The <hr class="postscript-rule"> lives INSIDE .postscript, so its width
+   is a fraction of the postscript block (not of .page). The two widths
+   below are independent knobs. */
+.postscript {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #6f675f;
+  line-height: 1.5;
+  text-align: right;
+  max-width: 60%;          /* text-block width, as % of .page (knob 1) */
+  margin: 0 0 0 auto;      /* right-hugged inside .page */
+}
+
+.postscript-rule {
+  border: none;
+  border-top: 1px solid #ded4c7;
+  width: 70%;              /* divider width, as % of .postscript (knob 2) */
+  margin: 2.5rem auto 1.25rem;  /* auto = centered inside .postscript */
+}
+
+.postscript p {
+  margin: 0.5rem 0;
+}
+
+/* align="center" variant: block centered on .page, text and divider both
+   centered. Divider stays centered within .postscript automatically because
+   its horizontal margins are already `auto`. */
+.postscript.postscript--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* password lock */
+.lock {
+  max-width: 26rem;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.lock-label {
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  color: #6f675f;
+  margin-bottom: 0.4rem;
+}
+
+.lock-hint {
+  font-style: italic;
+  color: #2d2926;
+  margin-bottom: 1.5rem;
+}
+
+.lock-input {
+  font: inherit;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  background: #fffdf8;
+  border: 1px solid #ded4c7;
+  border-radius: 8px;
+  color: #2d2926;
+  box-sizing: border-box;
+}
+
+.lock-input:focus {
+  outline: none;
+  border-color: #b9ab98;
+}
+
+.lock-error {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  color: #9a5b4f;
+}
+
+/* resume */
+.resume-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.resume-page object {
+  flex: 1;
+  width: 100%;
+  border: none;
+}

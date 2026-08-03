@@ -1,0 +1,28 @@
+{{/*
+  Placeholder ASCII arrow pointing at the Hypothes.is widget in the top-right
+  corner. Rendered on the same pages as the hypothesis partial. Swap the <pre>
+  for an <img> when the real doodle is ready.
+*/}}
+{{ if site.Params.hypothesis.enabled }}
+  {{ if and (eq .Kind "page") (in site.Params.hypothesis.sections .Section) }}
+    <pre class="hypothesis-arrow" aria-hidden="true">     ↗
+    /
+  _/
+ / \
+ \_/</pre>
+    <style>
+      .hypothesis-arrow {
+        position: fixed;
+        top: 48px;
+        right: 80px;
+        margin: 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.85rem;
+        line-height: 1.05;
+        color: #6f675f;
+        pointer-events: none;
+        z-index: 10;
+      }
+    </style>
+  {{ end }}
+{{ end }}

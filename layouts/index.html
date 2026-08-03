@@ -1,0 +1,84 @@
+{{ define "main" }}
+<main class="home">
+  <section class="card">
+    <img class="picture" src="/images/flying_goose.png" alt="Goose flying away">
+    <h1>{{ .Title }}</h1>
+
+    <p class="blurb">{{ .Description }}</p>
+
+    <nav class="buttons" aria-label="Main links">
+      <a href="/research/">research</a>
+      <a href="/reading/">garden</a>
+      <a href="https://curius.app/gloria-ma">curius</a>
+      <a href="/blog/">blog</a>
+      <a href="/resume/">resume</a>
+      <a href="https://github.com/gloriayma">github</a>
+      <!-- <a href="/secret/">secret</a> -->
+    </nav>
+    <div class="music-player">
+      <button class="staff-button" id="music-toggle" aria-label="Toggle music">
+        <img class="staff" src="/images/staff.png" alt="musical staff" draggable="false">
+      </button>
+      <audio id="bg-music" loop>
+        <source src="/audio/laplusquelente_loud1.5.m4a" type="audio/mp4">
+      </audio>
+      <div class="music-hint" id="music-hint">volume up! (hint)</div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const toggle = document.getElementById('music-toggle');
+  const audio = document.getElementById('bg-music');
+  const cursor = document.createElement('img');
+
+  cursor.src = '/images/cursor_note.png';
+  cursor.className = 'staff-cursor';
+  cursor.draggable = false;
+  toggle.appendChild(cursor);
+
+  function positionNote(element, event) {
+    const rect = toggle.getBoundingClientRect();
+
+    element.style.left = ((event.clientX - rect.left) / rect.width * 100) + '%';
+    element.style.top = ((event.clientY - rect.top) / rect.height * 100) + '%';
+  }
+
+  toggle.addEventListener('mouseenter', (e) => {
+    positionNote(cursor, e);
+    cursor.style.display = 'block';
+  });
+
+  toggle.addEventListener('mouseleave', () => {
+    cursor.style.display = 'none';
+  });
+
+  toggle.addEventListener('mousemove', (e) => {
+    positionNote(cursor, e);
+  });
+
+  toggle.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
+
+  const hint = document.getElementById('music-hint');
+  let firstPlay = true;
+
+  toggle.addEventListener('click', (e) => {
+    audio.paused ? audio.play() : audio.pause();
+
+    if (firstPlay) {
+      hint.textContent = 'debussy - la plus que lente - 2023';
+      hint.classList.add('revealed');
+      firstPlay = false;
+    }
+
+    const note = document.createElement('img');
+    note.src = '/images/cursor_note.png';
+    note.className = 'staff-note';
+    note.draggable = false;
+    positionNote(note, e);
+    toggle.appendChild(note);
+  });
+</script>
+{{ end }}

@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# Create a new post whose filename sorts chronologically and whose front
+# matter (title, slug) is derived from the slug you pass in — so the slug is
+# the single source of truth.
+#
+# Filename format: YY_MM_DD_N_<slug>.md
+#   YY_MM_DD  zero-padded so lexical sort matches calendar order.
+#   N         per-day counter (auto-detected from existing files), so multiple
+#             posts on the same day still sort in creation order.
+#
+# Usage:
+#   ./new-post <section> <slug> [YYYY-MM-DD]
+#
+# Examples:
+#   ./new-post blog caring              -> content/blog/26_07_07_1_caring.md
+#   ./new-post blog other  (same day)   -> content/blog/26_07_07_2_other.md
+#   ./new-post blog note 2026-07-19     -> content/blog/26_07_19_1_note.md
+
+set -euo pipefail
+
+if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
+  echo "usage: $0 <section> <slug> [YYYY-MM-DD]" >&2
+  exit 64
+fi
+
+section="$1"
+slug="$2"
+date_arg="${3:-}"
+
+if [ -n "$date_arg" ]; then
+  yy=$(date -j -f "%Y-%m-%d" "$date_arg" +"%y")
+  m=$(date -j -f "%Y-%m-%d" "$date_arg" +"%m")
+  d=$(date -j -f "%Y-%m-%d" "$date_arg" +"%d")
+else
+  yy=$(date +"%y")
+  m=$(date +"%m")
+  d=$(date +"%d")
+fi
+
+prefix="${yy}_${m}_${d}_"
+
+repo_root=$(cd "$(dirname "$0")" && pwd)
+cd "$repo_root"
+
+# Find the highest per-day counter already used in this section, so the next
+# post picks up from N+1. Matches filenames like YY_MM_DD_<digits>_*.md.
+highest=0
+if [ -d "content/$section" ]; then
+  shopt -s nullglob
+  for f in "content/$section/${prefix}"[0-9]*_*.md; do
+    base=$(basename "$f" .md)
+    rest="${base#$prefix}"      # "3_foo"
+    n="${rest%%_*}"              # "3"
+    if [[ "$n" =~ ^[0-9]+$ ]] && [ "$n" -gt "$highest" ]; then
+      highest=$n
+    fi
+  done
+  shopt -u nullglob
+fi
+counter=$((highest + 1))
+
+filename="${section}/${prefix}${counter}_${slug}.md"
+
+hugo new content "$filename"
+
+# Slug is the source of truth: overwrite the archetype-generated title/slug
+# using the passed slug rather than trying to recover it from the filename.
+target="content/${filename}"
+title_val=$(printf '%s' "$slug" \
+  | sed 's/[-_]/ /g' \
+  | awk '{ for (i=1; i<=NF; i++) $i = toupper(substr($i,1,1)) substr($i,2) } 1')
+
+awk -v t="$title_val" -v s="$slug" 'BEGIN { q = "\047" }
+  /^title = / { print "title = " q t q; next }
+  /^slug = /  { print "slug = "  q s q; next }
+  { print }
+' "$target" > "$target.tmp" && mv "$target.tmp" "$target"

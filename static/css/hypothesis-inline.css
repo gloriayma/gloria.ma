@@ -1,0 +1,119 @@
+/*
+  Hypothes.is inline annotations — styles.
+  Paired with /static/js/hypothesis-inline.js.
+  Sandboxed: loaded only when params.hypothesis.inline = true.
+
+  Two states per note:
+    - collapsed (default): small pill marker showing the author's initials
+      and (if there are replies) a thread count.
+    - expanded (.expanded class): the full comment text + replies, in a
+      bordered box. Toggled by clicking the note.
+*/
+
+.has-annotations {
+  position: relative;
+}
+
+/* The highlighted span in the text */
+.annotation-highlight {
+  background-color: #fef3b0;
+  color: inherit;
+  border-bottom: 1px dotted #c9b87a;
+  cursor: help;
+}
+
+/* Outer note element — only handles positioning */
+.annotation-note {
+  box-sizing: border-box;
+}
+
+/* Collapsed: small pill ------------------------------------------------- */
+.annotation-marker {
+  background: #fef3b0;
+  border: 1px solid #d4c585;
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  font: inherit;
+  font-size: 0.68rem;
+  color: #6b5a30;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  line-height: 1.5;
+}
+
+.annotation-marker:hover,
+.annotation-marker:focus-visible {
+  background: #fbe88a;
+  outline: none;
+}
+
+.annotation-marker-initials {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.annotation-marker-count {
+  color: #8a7a4a;
+  font-size: 0.62rem;
+}
+
+/* Expanded: full bordered box ----------------------------------------- */
+.annotation-content {
+  display: none;
+  background: #fffbe9;
+  border-left: 2px solid #d4c585;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  border-radius: 3px;
+  color: #2d2926;
+  cursor: pointer;
+}
+
+.annotation-note.expanded .annotation-marker { display: none; }
+.annotation-note.expanded .annotation-content { display: block; }
+
+.annotation-meta {
+  font-size: 0.7rem;
+  color: #6f675f;
+  letter-spacing: 0.05em;
+  font-variant: small-caps;
+  margin-bottom: 0.2rem;
+}
+
+.annotation-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.annotation-text a {
+  color: #8a6e3a;
+  text-decoration: underline;
+}
+
+.annotation-reply {
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid #ebe0c7;
+}
+
+/* Desktop: notes float into the right margin; JS sets `top` -------------- */
+@media (min-width: 1100px) {
+  .annotation-note {
+    position: absolute;
+    left: calc(100% + 1.5rem);
+  }
+  .annotation-note.expanded {
+    width: 220px;
+  }
+}
+
+/* Narrow screens: notes flow inline beneath their paragraph -------------- */
+@media (max-width: 1099px) {
+  .annotation-note {
+    margin: 0.5rem 0 0.75rem;
+  }
+}

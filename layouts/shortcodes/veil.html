@@ -1,0 +1,18 @@
+{{- /*
+  Reusable password lock. Drop into any post with the lock shortcode, passing:
+  - salt: short unique string per lock so identical passwords don't collide
+  - hint: the sentence shown under "password"
+  - base (optional): directory the hidden post lives under (default /blog/)
+  The real content lives at <base>/<sha256(salt:password)>/ — nothing about the
+  password, destination, or content appears in this page's source.
+  Usage example is documented in claude_instructions/password_lock.md.
+*/ -}}
+<div class="lock" data-salt="{{ .Get "salt" }}" data-base="{{ with .Get "base" }}{{ . }}{{ else }}/blog/{{ end }}">
+  <p class="lock-label">password:</p>
+  <p class="lock-hint">{{ .Get "hint" }}</p>
+  <form class="lock-form" autocomplete="off">
+    <input type="text" class="lock-input" aria-label="password" autofocus spellcheck="false">
+    <p class="lock-error" hidden>password incorrect. ask me for it? </p>
+  </form>
+</div>
+<script src="/js/veil.js" defer></script>

@@ -1,0 +1,9 @@
+baseURL = 'https://gloria.ma/'
+languageCode = 'en-us'
+title = 'Gloria Ma'
+buildFuture = true
+
+[params.hypothesis]
+  enabled = true
+  sections = ["blog", "uknowme"]
+  inline = true
