@@ -11,11 +11,9 @@ Currently reading:
 - The Grrl Genius Guide to Life
 - Speaker for the Dead (Orson Scott Card)
 
-Previously wanting to read:
+Want to read:
 - Wuthering Heights
 - The Path to Power (Robert A Caro)
-
-Want to read:
 - Backwardness (Garielle Lutz)
 - Tomorrow ^3
 
@@ -31,7 +29,7 @@ Books that are / were / are important to me - if you wanted to train a Gloria LL
 - The Charisma Myth
 - The Inner Game of Tennis
 - Elon Musk (Walter Isaacson)
-- (Albert's) Molecular Biology of the Cell
+- [(Albert's) Molecular Biology of the Cell](https://drive.google.com/drive/folders/1SiQmh6-q3FSlgRfoe4UzxhKxsbCVLund?ths=true)
 - Incerto (Nassim Nicholas Taleb)
 - Le Petit Prince
 - Drawing on the Right Side of the Brain
@@ -39,8 +37,7 @@ Books that are / were / are important to me - if you wanted to train a Gloria LL
 - Lexicon (Max Barry)
 - Permutation City
 
-Want to reread
-- Heft (Liz Moore)
-- The Inner Game of Tennis
-- Le Petit Prince
+Midtraining corpus: 
+
+- Speaker for the Dead
 
