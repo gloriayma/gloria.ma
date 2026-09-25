@@ -43,6 +43,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          # Full history: hugo.toml sets enableGitInfo, and Hugo inspects the
+          # log of each content file to find the commit that last touched it.
+          # The default depth-1 shallow clone leaves only one commit, so every
+          # page's .GitInfo.Hash collapses to HEAD.
+          fetch-depth: 0
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
