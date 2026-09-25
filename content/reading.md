@@ -14,10 +14,6 @@ Want to read:
 - Backwardness (Garielle Lutz)
 - Tomorrow ^3
 
-Want to want to read: 
-- The Path to Power (Robert A Caro)
-- 17776
-
 Books that are / were / are important to me - if you wanted to train a Gloria LLM you'd include these in your pretraining corpus: (these are listed roughly in the order that I read them)
 
 - Ender's Game
@@ -48,4 +44,4 @@ My other favorite works of writing:
 - Kary B Mullis' [1993 Nobel Prize acceptance speech](https://www.nobelprize.org/prizes/chemistry/1993/mullis/lecture/) for his discovery of the polymerase chain reaction
     - When I'm feeling some way, just [the last four paragraphs](https://www.mondaymorningmemo.com/the-end-of-the-speech_kary-mullis/)
 - [Andrew Wu's](https://andrew-gong-wu.github.io/) [writing](https://andrewwu.substack.com/), particularly: 
-    - This is my favorite piece:
+    - Hold-on, let me show you my favorite piece:

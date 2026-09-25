@@ -11,6 +11,6 @@ Currently:
 
 Previously:
 
-- [CAMBRIA](https://www.cbai.ai/cambria) (Cambridge Bootcamp for Research in Interpretability and Alignment) in May 2026, where I had way too much fun playing with [natural language autoencoders](https://transformer-circuits.pub/2026/nla/) for our research capstone. 
+- [CAMBRIA](https://www.cbai.ai/cambria) (Cambridge Bootcamp for Research in Interpretability and Alignment) in May 2026, where I played with [natural language autoencoders](https://transformer-circuits.pub/2026/nla/) for our research capstone. 
 
-- Protein structure prediction/design models with [MinGyu Choi](https://chemgyu.github.io/) in [RGB](https://www.rbg.mit.edu/). [Tried to improve Boltz](https://openreview.net/forum?id=kIe6nCvXzA)'s modeling realism by adding back environmental water molecules to the x-ray crystallography training data. 
+- Protein structure prediction/design models with [MinGyu Choi](https://chemgyu.github.io/) in [RGB](https://www.rbg.mit.edu/). [Tried to improve Boltz](https://openreview.net/forum?id=kIe6nCvXzA)'s protein-modeling realism by adding back environmental water molecules to the x-ray crystallography training data. 
