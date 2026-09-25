@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
+    {{ if eq .Section "wall" }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&family=Quicksand:wght@300..700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    {{ end }}
     <link rel="stylesheet" href="/css/main.css">
     {{ partial "hypothesis.html" . }}
   </head>

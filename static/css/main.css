@@ -204,85 +204,138 @@ a {
   border: none;
 }
 
-/* wall */
-.wall {
-  max-width: 940px;
+/* wall — Evan Chen's metrics (wall.evanchen.cc), this site's colors.
+   Everything is scoped under .wall-wrapper because his stylesheet styles bare
+   `body`, `header`, `section` and `footer`, which would otherwise hit the
+   homepage's own <section class="card">. His body padding lives on the wrapper:
+   `margin: 0 auto` centers the border box, so 950px + 50px padding lands the
+   content in exactly the same place as his 50px body padding + 950px wrapper. */
+.wall-wrapper {
+  width: 950px;
   margin: 0 auto;
-  padding: 2rem;
-  display: flex;
-  gap: 3rem;
-  align-items: flex-start;
+  padding: 50px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 13pt;
+  font-optical-sizing: auto;
 }
 
-.wall-header {
-  flex: 0 0 240px;
-  position: sticky;
-  top: 2rem;
+.wall-wrapper p,
+.wall-wrapper ul,
+.wall-wrapper ol,
+.wall-wrapper pre,
+.wall-wrapper dl {
+  margin: 0 0 20px;
 }
 
-.wall-title {
-  font-size: 2rem;
-  margin: 0 0 0.35rem;
+.wall-wrapper strong {
+  font-weight: 700;
 }
 
-.wall-subtitle {
+.wall-wrapper blockquote {
+  border-left: 1px solid #ded4c7;
   margin: 0;
-  color: #6f675f;
-  line-height: 1.5;
-}
-
-/* Sits at the bottom of the sidebar, where Evan's generator credit lives. */
-.wall-thanks {
-  margin-top: 3rem;
-  font-size: 0.8rem;
+  padding: 0 0 0 20px;
   font-style: italic;
-  color: #6f675f;
-  line-height: 1.5;
 }
 
-.wall-evan {
+.wall-wrapper pre,
+.wall-wrapper code {
+  font-size: 11pt;
+}
+
+.wall-wrapper pre {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 1px solid #ded4c7;
+  overflow-x: auto;
+}
+
+.wall-wrapper hr {
+  border: 0;
+  background: #ded4c7;
+  height: 1px;
+  margin: 0 0 20px;
+}
+
+.wall-wrapper header {
+  width: 270px;
+  position: fixed;
+}
+
+.wall-wrapper .title {
+  font-size: 42px;
+  font-family: "Shadows Into Light", cursive;
+  font-style: normal;
+  padding-top: 2px;
+  padding-bottom: 8px;
+}
+
+.wall-wrapper .sub-title {
+  font-family: "Coming Soon", cursive;
+  font-weight: 400;
+  font-size: 15pt;
+}
+
+.wall-wrapper section {
+  width: 630px;
+  float: right;
+  padding-bottom: 50px;
+}
+
+/* Pinned to the viewport bottom, where his generator credit sits. */
+.wall-wrapper footer {
+  width: 270px;
+  position: fixed;
+  bottom: 10px;
+  font-size: 12px;
+}
+
+.wall-wrapper .evan {
   color: #9a5b4f;
 }
 
-.wall-posts {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.wall-post {
-  border-bottom: 1px solid #ded4c7;
-  padding-bottom: 1.75rem;
-  margin-bottom: 1.75rem;
-}
-
-.wall-post:last-child {
-  border-bottom: none;
-}
-
-.wall-meta {
-  margin: 0 0 0.6rem;
-  font-size: 0.85rem;
-  font-weight: normal;
-  color: #6f675f;
-}
-
-.wall-post p {
-  margin: 0.75rem 0;
-  line-height: 1.6;
-}
-
-@media (max-width: 860px) {
-  .wall {
-    display: block;
-    padding: 2rem 1.5rem;
+@media print, screen and (max-width: 960px) {
+  .wall-wrapper {
+    width: auto;
   }
 
-  .wall-header {
+  .wall-wrapper header,
+  .wall-wrapper section,
+  .wall-wrapper footer {
+    float: none;
     position: static;
-    margin-bottom: 2.5rem;
+    width: auto;
   }
 
-  .wall-thanks {
-    margin-top: 1.5rem;
+  .wall-wrapper header {
+    padding-right: 320px;
+  }
+
+  .wall-wrapper section {
+    border: none;
+    padding: 20px 0;
+    margin: 0 0 20px;
+  }
+}
+
+@media print, screen and (max-width: 720px) {
+  .wall-wrapper {
+    word-wrap: break-word;
+  }
+
+  .wall-wrapper header {
+    padding: 0;
+  }
+
+  .wall-wrapper pre,
+  .wall-wrapper code {
+    word-wrap: normal;
+  }
+}
+
+@media print, screen and (max-width: 480px) {
+  .wall-wrapper {
+    padding: 15px;
   }
 }

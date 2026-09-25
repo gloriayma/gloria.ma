@@ -1,27 +1,31 @@
 {{ define "main" }}
-<div class="wall">
-  <header class="wall-header">
-    <h1 class="wall-title">{{ .Title }}</h1>
-    <p class="wall-subtitle">{{ .Description }}</p>
-    <p class="wall-thanks">With thanks to <a class="wall-evan" href="https://wall.evanchen.cc/">Evan</a> for the idea, the help and the code :)</p>
+<div class="wall-wrapper">
+  <header>
+    <div class="title">{{ .Title }}</div>
+    <div class="sub-title">{{ .Description }}</div>
   </header>
 
-  <section class="wall-posts">
+  <section>
     {{ range .Pages.ByDate.Reverse }}
     {{ $p := . }}
     <article class="wall-post">
-      <h2 class="wall-meta">#{{ .Params.num }} &mdash;
+      <h5>#{{ .Params.num }} &mdash;
         {{- with .GitInfo }}
         <a href="https://github.com/gloriayma/gloria.ma/commit/{{ .Hash }}" title="Verify on GitHub — commit {{ .AbbreviatedHash }}"><time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "Jan 2, 2006, 15:04" }}</time></a>
         {{- else }}
         <time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "Jan 2, 2006, 15:04" }}</time>
         {{- end }}
-        by Gloria Ma{{ with .Params.location }} from {{ . }}{{ end }}<span class="wall-yourtime" hidden></span>
-      </h2>
+        {{- with .Params.location }} from {{ . }}{{ end }}<span class="yourtime" hidden></span>
+      </h5>
       {{ .Content }}
     </article>
+    <hr />
     {{ end }}
   </section>
+
+  <footer>
+    <p>With thanks to <a class="evan" href="https://wall.evanchen.cc/">Evan</a> for the idea, the help and the code :)</p>
+  </footer>
 </div>
 
 <script>
@@ -29,7 +33,7 @@
   // client-side. Readers already in the posting timezone see nothing extra.
   document.querySelectorAll('.wall-post').forEach(function (post) {
     const stampEl = post.querySelector('time');
-    const out = post.querySelector('.wall-yourtime');
+    const out = post.querySelector('.yourtime');
     if (!stampEl || !out) return;
 
     const stamp = stampEl.getAttribute('datetime');
@@ -50,7 +54,7 @@
       ? time
       : posted.toLocaleDateString([], { month: 'short', day: 'numeric' }) + ', ' + time;
 
-    out.textContent = ' · (' + label + ', in your time)';
+    out.textContent = ' · ' + label + ', in your time';
     out.hidden = false;
   });
 </script>
