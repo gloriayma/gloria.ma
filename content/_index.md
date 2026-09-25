@@ -1,4 +1,4 @@
 ---
-title: "Gloria Ma"
-description: "I work on machine learning, genomes, and..."
+title: "Hi, I'm Gloria!"
+description: "And I like to..."
 ---
