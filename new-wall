@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# Create a new wall post. Same filename scheme as ./new-post, with the section
+# fixed to `wall` and a permanent post number stamped into the front matter.
+#
+# Filename format: YY_MM_DD_N_<slug>.md
+#   YY_MM_DD  zero-padded so lexical sort matches calendar order.
+#   N         per-day counter (auto-detected from existing files), so multiple
+#             posts on the same day still sort in creation order.
+#
+# The `num` field is the #356-style number shown on the wall. It is assigned
+# once, here, so deleting a post never renumbers the ones around it.
+#
+# Usage:
+#   ./new-wall <slug> [YYYY-MM-DD]
+#
+# Examples:
+#   ./new-wall coffee             -> content/wall/26_09_25_1_coffee.md
+#   ./new-wall coffee 2026-09-23  -> content/wall/26_09_23_1_coffee.md
+
+set -euo pipefail
+
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+  echo "usage: $0 <slug> [YYYY-MM-DD]" >&2
+  exit 64
+fi
+
+slug="$1"
+date_arg="${2:-}"
+
+if [ -n "$date_arg" ]; then
+  yy=$(date -j -f "%Y-%m-%d" "$date_arg" +"%y")
+  m=$(date -j -f "%Y-%m-%d" "$date_arg" +"%m")
+  d=$(date -j -f "%Y-%m-%d" "$date_arg" +"%d")
+else
+  yy=$(date +"%y")
+  m=$(date +"%m")
+  d=$(date +"%d")
+fi
+
+prefix="${yy}_${m}_${d}_"
+
+repo_root=$(cd "$(dirname "$0")" && pwd)
+cd "$repo_root"
+
+# Find the highest per-day counter already used, so the next post picks up from
+# N+1. Matches filenames like YY_MM_DD_<digits>_*.md.
+highest=0
+if [ -d "content/wall" ]; then
+  shopt -s nullglob
+  for f in "content/wall/${prefix}"[0-9]*_*.md; do
+    base=$(basename "$f" .md)
+    rest="${base#$prefix}"      # "3_foo"
+    n="${rest%%_*}"              # "3"
+    if [[ "$n" =~ ^[0-9]+$ ]] && [ "$n" -gt "$highest" ]; then
+      highest=$n
+    fi
+  done
+  shopt -u nullglob
+fi
+counter=$((highest + 1))
+
+# Find the highest post number across the whole wall, so `num` keeps climbing
+# regardless of how the files are named or ordered.
+num=1
+# `|| true` because grep exits nonzero (and pipefail would abort) when no wall
+# post exists yet, or when none of them has a `num` line.
+highest_num=$( { grep -h '^num = ' content/wall/*.md 2>/dev/null || true; } | sed 's/^num = //' | sort -n | tail -1)
+if [[ "${highest_num:-}" =~ ^[0-9]+$ ]]; then
+  num=$((highest_num + 1))
+fi
+
+filename="wall/${prefix}${counter}_${slug}.md"
+
+hugo new content "$filename"
+
+# Slug is the source of truth; `num` is assigned here and never changes. Wall
+# posts don't display a title, so unlike ./new-post there is none to derive.
+target="content/${filename}"
+awk -v s="$slug" -v n="$num" 'BEGIN { q = "\047" }
+  /^slug = / { print "slug = " q s q; next }
+  /^num = /  { print "num = " n; next }
+  { print }
+' "$target" > "$target.tmp" && mv "$target.tmp" "$target"
+
+echo "Post #${num} — edit the location line if you are not in San Jose."

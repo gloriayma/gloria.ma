@@ -1,0 +1,57 @@
+{{ define "main" }}
+<div class="wall">
+  <header class="wall-header">
+    <h1 class="wall-title">{{ .Title }}</h1>
+    <p class="wall-subtitle">{{ .Description }}</p>
+    <p class="wall-thanks">With thanks to <a class="wall-evan" href="https://wall.evanchen.cc/">Evan</a> for the idea, the help and the code :)</p>
+  </header>
+
+  <section class="wall-posts">
+    {{ range .Pages.ByDate.Reverse }}
+    {{ $p := . }}
+    <article class="wall-post">
+      <h2 class="wall-meta">#{{ .Params.num }} &mdash;
+        {{- with .GitInfo }}
+        <a href="https://github.com/gloriayma/gloria.ma/commit/{{ .Hash }}" title="Verify on GitHub — commit {{ .AbbreviatedHash }}"><time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "Jan 2, 2006, 15:04" }}</time></a>
+        {{- else }}
+        <time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "Jan 2, 2006, 15:04" }}</time>
+        {{- end }}
+        by Gloria Ma{{ with .Params.location }} from {{ . }}{{ end }}<span class="wall-yourtime" hidden></span>
+      </h2>
+      {{ .Content }}
+    </article>
+    {{ end }}
+  </section>
+</div>
+
+<script>
+  // The server can't know a reader's timezone, so convert each post's instant
+  // client-side. Readers already in the posting timezone see nothing extra.
+  document.querySelectorAll('.wall-post').forEach(function (post) {
+    const stampEl = post.querySelector('time');
+    const out = post.querySelector('.wall-yourtime');
+    if (!stampEl || !out) return;
+
+    const stamp = stampEl.getAttribute('datetime');
+    const posted = new Date(stamp);
+    if (isNaN(posted)) return;
+
+    const offset = stamp.match(/([+-])(\d{2}):(\d{2})$/);
+    const postMinutes = offset
+      ? (offset[1] === '-' ? -1 : 1) * (parseInt(offset[2], 10) * 60 + parseInt(offset[3], 10))
+      : 0;
+    if (postMinutes === -posted.getTimezoneOffset()) return;
+
+    const time = posted.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+    const postLocal = new Date(posted.getTime() + postMinutes * 60000);
+    const sameDay = postLocal.getUTCDate() === posted.getDate()
+      && postLocal.getUTCMonth() === posted.getMonth();
+    const label = sameDay
+      ? time
+      : posted.toLocaleDateString([], { month: 'short', day: 'numeric' }) + ', ' + time;
+
+    out.textContent = ' · (' + label + ', in your time)';
+    out.hidden = false;
+  });
+</script>
+{{ end }}

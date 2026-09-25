@@ -203,3 +203,86 @@ a {
   width: 100%;
   border: none;
 }
+
+/* wall */
+.wall {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.wall-header {
+  flex: 0 0 240px;
+  position: sticky;
+  top: 2rem;
+}
+
+.wall-title {
+  font-size: 2rem;
+  margin: 0 0 0.35rem;
+}
+
+.wall-subtitle {
+  margin: 0;
+  color: #6f675f;
+  line-height: 1.5;
+}
+
+/* Sits at the bottom of the sidebar, where Evan's generator credit lives. */
+.wall-thanks {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #6f675f;
+  line-height: 1.5;
+}
+
+.wall-evan {
+  color: #9a5b4f;
+}
+
+.wall-posts {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.wall-post {
+  border-bottom: 1px solid #ded4c7;
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.wall-post:last-child {
+  border-bottom: none;
+}
+
+.wall-meta {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: #6f675f;
+}
+
+.wall-post p {
+  margin: 0.75rem 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .wall {
+    display: block;
+    padding: 2rem 1.5rem;
+  }
+
+  .wall-header {
+    position: static;
+    margin-bottom: 2.5rem;
+  }
+
+  .wall-thanks {
+    margin-top: 1.5rem;
+  }
+}
