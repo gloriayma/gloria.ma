@@ -258,8 +258,11 @@ a {
   margin: 0 0 20px;
 }
 
+/* Wider than Evan's 270px sidebar so "my inner monologue" sets on one line.
+   Sidebar 320 + 100 gap + posts 530 = the same 950px wrapper, so the posts
+   shift right while their right edge stays put. */
 .wall-wrapper header {
-  width: 270px;
+  width: 320px;
   position: fixed;
 }
 
@@ -278,14 +281,14 @@ a {
 }
 
 .wall-wrapper section {
-  width: 630px;
+  width: 530px;
   float: right;
   padding-bottom: 50px;
 }
 
 /* Pinned to the viewport bottom, where his generator credit sits. */
 .wall-wrapper footer {
-  width: 270px;
+  width: 320px;
   position: fixed;
   bottom: 10px;
   font-size: 12px;
