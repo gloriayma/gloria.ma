@@ -9,4 +9,4 @@ layout = 'veil'
   disable = true
 +++
 
-{{< veil salt="charing" base="/reading/" prompt="what is your name? no spaces, case insensitive. (you can tell the truth, or not, I don't mind :) if you have a common name, it might not matter anyway...)" fallback="/reading/84-charing-cross-road/" >}}
+{{< veil salt="charing" base="/reading/" prompt="what is your name? no spaces, case insensitive. you can tell the truth, or not, I don't mind :) if you have a common name, it might not matter anyway..." fallback="/reading/84-charing-cross-road/" >}}
