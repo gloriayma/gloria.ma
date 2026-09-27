@@ -1,18 +1,31 @@
 {{- /*
-  Reusable password lock. Drop into any post with the lock shortcode, passing:
-  - salt: short unique string per lock so identical passwords don't collide
-  - hint: the sentence shown under "password"
-  - base (optional): directory the hidden post lives under (default /blog/)
-  The real content lives at <base>/<sha256(salt:password)>/ — nothing about the
-  password, destination, or content appears in this page's source.
+  Reusable answer gate. Drop into any post with the veil shortcode, passing:
+  - salt: short unique string per gate so identical answers don't collide
+  - hint: the sentence shown under "password" (classic lock mode)
+  - prompt: ask a question instead — replaces the "password" label and the hint,
+    and drops the wrong-answer line, since in router mode nothing is "wrong"
+  - fallback (optional): where answers that match nothing go. Without it the gate
+    behaves like the original lock and shows "password incorrect" instead.
+  - base (optional): directory the hidden pages live under (default /blog/)
+  Each answer lands at <base>/<sha256(salt:answer)>/ — nothing about the answers,
+  their destinations, or their content appears in this page's source. Only the
+  fallback URL is visible, and that branch is public by construction.
   Usage example is documented in claude_instructions/password_lock.md.
 */ -}}
-<div class="lock" data-salt="{{ .Get "salt" }}" data-base="{{ with .Get "base" }}{{ . }}{{ else }}/blog/{{ end }}">
+{{- $prompt := .Get "prompt" -}}
+{{- $fallback := .Get "fallback" -}}
+<div class="lock" data-salt="{{ .Get "salt" }}" data-base="{{ with .Get "base" }}{{ . }}{{ else }}/blog/{{ end }}"{{ with $fallback }} data-fallback="{{ . }}"{{ end }}>
+  {{- if $prompt }}
+  <p class="lock-prompt">{{ $prompt }}</p>
+  {{- else }}
   <p class="lock-label">password:</p>
   <p class="lock-hint">{{ .Get "hint" }}</p>
+  {{- end }}
   <form class="lock-form" autocomplete="off">
-    <input type="text" class="lock-input" aria-label="password" autofocus spellcheck="false">
+    <input type="text" class="lock-input" aria-label="{{ if $prompt }}answer{{ else }}password{{ end }}" autofocus spellcheck="false">
+    {{- if not $fallback }}
     <p class="lock-error" hidden>password incorrect. ask me for it? </p>
+    {{- end }}
   </form>
 </div>
 <script src="/js/veil.js" defer></script>

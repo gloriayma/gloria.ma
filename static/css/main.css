@@ -167,6 +167,14 @@ a {
   margin-bottom: 1.5rem;
 }
 
+/* the question shown instead of "password:" + hint, when the veil routes by answer */
+.lock-prompt {
+  font-style: italic;
+  color: #2d2926;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
 .lock-input {
   font: inherit;
   width: 100%;
@@ -341,4 +349,10 @@ a {
   .wall-wrapper {
     padding: 15px;
   }
+}
+
+/* keep full-size photos inside the text column */
+.page img {
+  max-width: 100%;
+  height: auto;
 }

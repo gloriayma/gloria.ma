@@ -1,0 +1,14 @@
+{{- /*
+  Standalone redirect page — no {{ define }} block, so Hugo renders it without baseof.
+  Used by the hashed door pages that land on a raw file rather than a rendered page.
+  Set layout = 'redirect' and redirect_to = '/some/file' in the page's front matter.
+*/ -}}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url={{ .Params.redirect_to }}">
+    <title>{{ .Title }}</title>
+  </head>
+  <body><a href="{{ .Params.redirect_to }}">continue</a></body>
+</html>

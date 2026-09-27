@@ -38,7 +38,7 @@ Books that are / were / are important to me - if you wanted to train a Gloria LL
 Midtraining corpus: 
 
 - [Speaker for the Dead](/images/ender_and_valentine.jpg) (Orson Scott Card)
-- [84, Charing Cross Road](/images/84_charing_cross_road.jpg) (Helène Hanff)
+- [84, Charing Cross Road](/reading/charing/) (Helène Hanff)
 
 My other favorite works: 
 - Kary B Mullis' [1993 Nobel Prize acceptance speech](https://www.nobelprize.org/prizes/chemistry/1993/mullis/lecture/) for his discovery of the polymerase chain reaction
