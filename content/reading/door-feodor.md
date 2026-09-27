@@ -13,7 +13,7 @@ layout = 'veil'
 
 ![84, Charing Cross Road](/images/84_charing_cross_road.jpg)
 
-Hey Feodor! - or anyone else reading this -
+Hey Feodor! - or anyone else reading this, though you might not get all the references...
 
 I will admit, that even though I set that page up with the intention that anyone who knew the "polygon of the day" - acquaintances included - could access it, I was glad to hear that your jupyter notebook efforts failed. 
 
@@ -27,8 +27,8 @@ To anyone who finds this through the git commit (or any other means):
 
 I believe in a future where everything, up to and including my inner monologue - but, nothing more - will be known to all, who care. 
 
-And to Feodor: I hope you found this letter by putting in your name :)
+And to Feodor: I hope you found this letter, by putting in your name :)
 
-Thanks bro for showing me that there's nothing I need to hide behind pass-words
+Thanks bro for showing me that there're no secrets I need to hide behind pass-words
 
 Gloria 
