@@ -216,10 +216,10 @@ a {
    Everything is scoped under .wall-wrapper because his stylesheet styles bare
    `body`, `header`, `section` and `footer`, which would otherwise hit the
    homepage's own <section class="card">. His body padding lives on the wrapper:
-   `margin: 0 auto` centers the border box, so 950px + 50px padding lands the
-   content in exactly the same place as his 50px body padding + 950px wrapper. */
+   `margin: 0 auto` centers the border box. 80px wider than his 950px wrapper
+   to fit a 300px sidebar and a 100px gap beside his 630px post column. */
 .wall-wrapper {
-  width: 950px;
+  width: 1030px;
   margin: 0 auto;
   padding: 50px;
   font-family: "Quicksand", sans-serif;
@@ -267,10 +267,9 @@ a {
 }
 
 /* Wider than Evan's 270px sidebar so "my inner monologue" sets on one line.
-   Sidebar 320 + 100 gap + posts 530 = the same 950px wrapper, so the posts
-   shift right while their right edge stays put. */
+   Sidebar 300 + 100 gap + his 630px posts = the 1030px wrapper. */
 .wall-wrapper header {
-  width: 320px;
+  width: 300px;
   position: fixed;
 }
 
@@ -280,6 +279,9 @@ a {
   font-style: normal;
   padding-top: 2px;
   padding-bottom: 8px;
+  /* ~298px of text in the 300px sidebar: never wrap; any overhang falls
+     into the gap. */
+  white-space: nowrap;
 }
 
 /* On a post's own page the title links back to the wall. */
@@ -294,14 +296,14 @@ a {
 }
 
 .wall-wrapper section {
-  width: 530px;
+  width: 630px;
   float: right;
   padding-bottom: 50px;
 }
 
 /* Pinned to the viewport bottom, where his generator credit sits. */
 .wall-wrapper footer {
-  width: 320px;
+  width: 300px;
   position: fixed;
   bottom: 10px;
   font-size: 12px;
@@ -311,7 +313,10 @@ a {
   color: #9a5b4f;
 }
 
-@media print, screen and (max-width: 960px) {
+/* Stack once the 1030px wrapper + 2 × 50px padding + the body's default 8px
+   margins (1146px) no longer fit, so the fixed sidebar never overlaps a
+   sideways-scrolled post column. */
+@media print, screen and (max-width: 1150px) {
   .wall-wrapper {
     width: auto;
   }
