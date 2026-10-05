@@ -8,7 +8,8 @@
 #             posts on the same day still sort in creation order.
 #
 # The `num` field is the #356-style number shown on the wall. It is assigned
-# once, here, so deleting a post never renumbers the ones around it.
+# once, here, so deleting a post never renumbers the ones around it. It also
+# becomes a permanent /wall/<num>/ redirect to the post's /wall/<slug>/ page.
 #
 # Usage:
 #   ./new-wall <slug> [YYYY-MM-DD]
@@ -83,3 +84,4 @@ awk -v s="$slug" -v n="$num" 'BEGIN { q = "\047" }
 ' "$target" > "$target.tmp" && mv "$target.tmp" "$target"
 
 echo "Post #${num} — edit the location line if you are not in San Jose."
+echo "Lives at https://gloria.ma/wall/${slug}/ (and /wall/${num}/)."

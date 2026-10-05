@@ -1,0 +1,21 @@
+{{ define "title" }}#{{ .Params.num }} · {{ .Parent.Title }}{{ end }}
+
+{{ define "main" }}
+<div class="wall-wrapper">
+  <header>
+    {{/* Back to this post's spot on the wall, not the top of it. */}}
+    <div class="title"><a href="{{ .Parent.RelPermalink }}#{{ .Slug }}">{{ .Parent.Title }}</a></div>
+    <div class="sub-title">{{ .Parent.Description }}</div>
+  </header>
+
+  <section>
+    {{ partial "wall-post.html" . }}
+  </section>
+
+  <footer>
+    <p>thanks to <a class="evan" href="https://wall.evanchen.cc/">Evan</a> for everything - including, for now, all this styling :P</p>
+  </footer>
+</div>
+
+<script src="/js/wall-time.js" defer></script>
+{{ end }}

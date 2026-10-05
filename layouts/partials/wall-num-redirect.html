@@ -1,0 +1,13 @@
+{{- /*
+  The page published at /wall/<num>/, bouncing to the post's /wall/<slug>/.
+  Same markup as Hugo's own alias pages.
+*/ -}}
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>{{ .Permalink }}</title>
+    <link rel="canonical" href="{{ .Permalink }}">
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url={{ .Permalink }}">
+  </head>
+</html>

@@ -282,6 +282,11 @@ a {
   padding-bottom: 8px;
 }
 
+/* On a post's own page the title links back to the wall. */
+.wall-wrapper .title a {
+  text-decoration: none;
+}
+
 .wall-wrapper .sub-title {
   font-family: "Coming Soon", cursive;
   font-weight: 400;

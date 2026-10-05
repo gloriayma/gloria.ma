@@ -1,0 +1,17 @@
+{{- /*
+  One wall post, shared by the wall (wall/list.html) and the post's own page
+  (wall/single.html). The id lets /wall/#<slug> land on it; #num links to the
+  post's own page.
+*/ -}}
+{{ $p := . }}
+<article class="wall-post" id="{{ .Slug }}">
+  <h5><a href="{{ .RelPermalink }}">#{{ .Params.num }}</a> &mdash;
+    {{- with .GitInfo }}
+    <a href="https://github.com/gloriayma/gloria.ma/commit/{{ .Hash }}" title="Verify on GitHub — commit {{ .AbbreviatedHash }}"><time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "Jan 2, 2006, 15:04" }}</time></a>
+    {{- else }}
+    <time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "Jan 2, 2006, 15:04" }}</time>
+    {{- end }}
+    {{- with .Params.location }} from {{ . }}{{ end }}<span class="yourtime" hidden></span>
+  </h5>
+  {{ .Content }}
+</article>

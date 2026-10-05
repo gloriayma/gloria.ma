@@ -3,13 +3,10 @@ title: "my inner monologue"
 description: "what i want to say to all my friends (everyone, really)"
 # HTML only: no feed for the wall.
 outputs: ["html"]
-# The cascade also lands on this page, so the section re-enables its own
-# rendering: /wall/ is the only page the wall has.
-build:
-  render: always
-  list: local
+# Each post also renders alone at /wall/<slug>/. `list: local` keeps the posts
+# (and, since the cascade lands here too, this page) out of the sitemap and
+# every page list outside the wall.
 cascade:
   build:
-    render: never
     list: local
 ---
