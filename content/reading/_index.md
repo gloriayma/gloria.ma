@@ -8,6 +8,8 @@ My top book recommendations: Lexicon (Max Barry), Permutation City (Greg Egan), 
 
 Currently reading:
 - On the Conflation and Hierarchy of Rights
+- Careless People 
+- Feynman's Six Easy Pieces 
 
 Want to read:
 - Wuthering Heights
@@ -16,6 +18,7 @@ Want to read:
 
 Books that are / were / are important to me - if you wanted to train a Gloria LLM you'd include these in your pretraining corpus: (these are listed roughly in the order that I read them)
 
+- The Simpsons and Their Mathematical Secrets
 - Ender's Game
 - Heft (Liz Moore)
 - Surely You're Joking, Mr. Feynman!
