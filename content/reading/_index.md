@@ -47,6 +47,6 @@ My other favorite works:
 - Kary B Mullis' [1993 Nobel Prize acceptance speech](https://www.nobelprize.org/prizes/chemistry/1993/mullis/lecture/) for his discovery of the polymerase chain reaction
     - When I'm feeling some way, [just the last four paragraphs](https://www.mondaymorningmemo.com/the-end-of-the-speech_kary-mullis/)
 - Andrew Wu's [writing](https://andrewwu.substack.com/), particularly: 
-    - Hold-on, let me find my favorite [piece](https://andrewwu.substack.com/p/nonlinearity/):
+    - Hold-on, let me find [my favorite piece](https://andrewwu.substack.com/p/nonlinearity/):
         - Give me 12 minutes...
             - While you wait, you can listen to [the first one](https://andrew-gong-wu.github.io/music.html), here. 
