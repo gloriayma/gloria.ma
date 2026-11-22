@@ -167,12 +167,24 @@ a {
   margin-bottom: 1.5rem;
 }
 
+/* optional line above the prompt (veil heading="...") */
+.lock-heading {
+  color: #2d2926;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
 /* the question shown instead of "password:" + hint, when the veil routes by answer */
 .lock-prompt {
   font-style: italic;
   color: #2d2926;
   line-height: 1.5;
   margin-bottom: 1.5rem;
+}
+
+/* veil upright="true": prompt is upright, so *markdown emphasis* can italicize a single word */
+.lock-prompt--upright {
+  font-style: normal;
 }
 
 .lock-input {

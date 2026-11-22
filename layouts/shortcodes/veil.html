@@ -7,6 +7,9 @@
   - fallback (optional): where answers that match nothing go. Without it the gate
     behaves like the original lock and shows "password incorrect" instead.
   - base (optional): directory the hidden pages live under (default /blog/)
+  - heading (optional): a line shown above the prompt, inside the centered block
+  - upright (optional): set to "true" to render the prompt non-italic and as
+    markdown, so *word* italicizes just that word. Plain prompts are left as-is.
   Each answer lands at <base>/<sha256(salt:answer)>/ — nothing about the answers,
   their destinations, or their content appears in this page's source. Only the
   fallback URL is visible, and that branch is public by construction.
@@ -14,9 +17,18 @@
 */ -}}
 {{- $prompt := .Get "prompt" -}}
 {{- $fallback := .Get "fallback" -}}
+{{- $heading := .Get "heading" -}}
+{{- $upright := eq (.Get "upright") "true" -}}
 <div class="lock" data-salt="{{ .Get "salt" }}" data-base="{{ with .Get "base" }}{{ . }}{{ else }}/blog/{{ end }}"{{ with $fallback }} data-fallback="{{ . }}"{{ end }}>
+  {{- with $heading }}
+  <p class="lock-heading">{{ . }}</p>
+  {{- end }}
   {{- if $prompt }}
+  {{- if $upright }}
+  <p class="lock-prompt lock-prompt--upright">{{ $.Page.RenderString (dict "display" "inline") $prompt }}</p>
+  {{- else }}
   <p class="lock-prompt">{{ $prompt }}</p>
+  {{- end }}
   {{- else }}
   <p class="lock-label">password:</p>
   <p class="lock-hint">{{ .Get "hint" }}</p>

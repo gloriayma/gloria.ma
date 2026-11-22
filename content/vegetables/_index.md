@@ -9,6 +9,4 @@ layout = 'veil'
   disable = true
 +++
 
-hello! read this before opening bag.
-
-{{< veil salt="vegetables" base="/vegetables/" prompt="your name here (i trust you) (first name, case-insensitive)" fallback="/vegetables/not-a-vegetable/" >}}
+{{< veil salt="vegetables" base="/vegetables/" heading="hello! read this before opening bag." prompt="*your* name here (i trust you)" upright="true" fallback="/vegetables/not-a-vegetable/" >}}
