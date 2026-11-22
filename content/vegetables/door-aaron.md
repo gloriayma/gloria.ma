@@ -11,6 +11,4 @@ layout = 'veil'
   disable = true
 +++
 
-hi aaron!
-
-[read this](/pdfs/vegetables-aaron.pdf)
+[aaron wang](/pdfs/vegetables-aaron.pdf)

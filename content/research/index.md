@@ -5,9 +5,9 @@ title = 'Research'
 +++
 
 Currently: 
-- AI safety / AI interpretability research at MATS in Berkeley, with Team Shard ([Alex Turner](https://turntrout.com/welcome), Alex Cloud). Thinking about: verbalization and language 
+- AI safety / AI interpretability research at MATS in Berkeley, with Team Shard ([Alex Turner](https://turntrout.com/welcome), Alex Cloud). Thinking about: verbalization and language; ML from first-principles 
 
-- DNA language models: Evo3 and Evo Sapiens with the [Hsu Lab](https://arcinstitute.org/labs/hsulab), Arc Institute. Thinking about: data scaling and human health
+- DNA language models: Evo3 and Evo Sapiens with the [Hsu Lab](https://arcinstitute.org/labs/hsulab), Arc Institute. Thinking about: bottlenecks to AIxBio
 
 Previously:
 

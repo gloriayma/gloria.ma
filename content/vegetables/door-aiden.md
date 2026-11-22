@@ -11,6 +11,5 @@ layout = 'veil'
   disable = true
 +++
 
-hi aiden!
+[hi aiden :D](/pdfs/vegetables-aiden.pdf)
 
-[read this](/pdfs/vegetables-aiden.pdf)

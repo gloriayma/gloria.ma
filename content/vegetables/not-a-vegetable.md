@@ -11,4 +11,7 @@ layout = 'veil'
   disable = true
 +++
 
-(placeholder — Gloria writes what strangers should read here)
+
+what's your favorite vegetable?
+
+![vegetable tier list](/images/vegetable_tier_list.png)
