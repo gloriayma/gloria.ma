@@ -13,4 +13,4 @@ layout = 'veil'
 
 hi aiden!
 
-(placeholder — Gloria fills in aiden's page)
+[read this](/pdfs/vegetables-aiden.pdf)

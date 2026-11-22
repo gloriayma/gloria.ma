@@ -13,4 +13,4 @@ layout = 'veil'
 
 hi aaron!
 
-(placeholder — Gloria fills in aaron's page)
+[read this](/pdfs/vegetables-aaron.pdf)
