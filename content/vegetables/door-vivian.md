@@ -11,6 +11,4 @@ layout = 'veil'
   disable = true
 +++
 
-hi vivian!
-
-(placeholder — Gloria fills in vivian's page)
+[hi vivian :)](/pdfs/vegetables-vivian.pdf)

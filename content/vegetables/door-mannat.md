@@ -11,6 +11,4 @@ layout = 'veil'
   disable = true
 +++
 
-hi mannat!
-
-(placeholder — Gloria fills in mannat's page)
+[hi mannat :)](/pdfs/vegetables-mannat.pdf)
