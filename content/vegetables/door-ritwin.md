@@ -11,4 +11,4 @@ layout = 'veil'
   disable = true
 +++
 
-[hi ritwin :)](/pdfs/vegetables-ritwin.pdf)
+[ritwin :D](/pdfs/vegetables-ritwin.pdf)
